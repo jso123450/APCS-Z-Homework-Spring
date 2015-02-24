@@ -1,7 +1,8 @@
 public class Lab{
 
     /* CURRENT STATUS
-       - only lake making is functional
+       - lake making (100% functional)
+       - cow travelling (only setup variables & display...not sure how to do the route calculation)
      */
     
     private String input1, input2;
@@ -9,14 +10,19 @@ public class Lab{
     private int[][] lake;
     private int finalElevation;
     private int numInstructions;
-    private char[][] travel;
+    private char[][] pasture;
+    private int rows2, cols2;
+    private int time;
+    private String coords;
 
     public Lab(String in1, String in2){
 	input1 = in1;
 	setupLake(input1);
 	input2 = in2;
+	setupPasture(input2);
     }
 
+    /* --------------------------------- LAKE MAKING --------------------------------- */
     public void setupLake(String input){
 	String inputcopy = input;
 	String firstline = inputcopy.split("\n")[0];
@@ -106,7 +112,7 @@ public class Lab{
 	return total;
     }
 
-    public String toString(){
+    public String printLake(){
 	String output = "";
 	for (int r = 0; r < lake.length; r++){
 	    output+= "row " + (r+1) + ": ";
@@ -118,20 +124,58 @@ public class Lab{
 	return output;
     }
 
+    /* --------------------------------- COW TRAVELLING --------------------------------- */
+
+    public void setupPasture(String input){
+	String inputcopy = input;
+	String firstline = inputcopy.split("\n")[0];
+	int row = Integer.parseInt( firstline.split(" ")[0] );
+	int col = Integer.parseInt( firstline.split(" ")[1] );
+	rows2 = row;
+	cols2 = col;
+	pasture = new char[rows2][cols2];
+	String lastline = inputcopy.split("\n")[rows2+1];
+	coords = lastline;
+	genPasture(input);
+    }
+
+    public void genPasture(String input){
+	String inputcopy = input;
+	for (int r = 1; r < rows2+1; r++){
+	    String line = input.split("\n")[r];
+	    for (int c = 0; c < cols2; c++){
+		pasture[r-1][c] = line.charAt(c);
+	    }
+	}
+    }
+
+    public String printPasture(){
+	String output = "";
+	for (int r = 0; r < rows2; r++){
+	    for (int c = 0; c < cols2; c++){
+		output+= pasture[r][c];
+	    }
+	    output+= "\n";
+	}
+	return output;
+    }
 
 
+    /* --------------------------------- MAIN --------------------------------- */
     public static void main(String[] args){
 	String lakemake = "4 6 22 2\n28 25 20 32 34 36\n27 25 20 20 30 34\n24 20 20 20 20 30\n20 20 14 14 20 20\n1 4 4\n1 1 10";
 	String cowtravel = "4 5 6\n...*.\n...*.\n.....\n.....\n1 3 1 5";
 	Lab lab = new Lab(lakemake, cowtravel);
-	System.out.println(lab);
+	System.out.println(lab.printLake());
 	//lab.cowStomp(1,4,4);
 	//System.out.println(lab);
 	//lab.cowStomp(1,1,10);
 	//System.out.println( lab.findMax(1,1) );
         int vol = lab.lakeMake();
-	System.out.println(lab);
+	System.out.println(lab.printLake());
 	System.out.println(vol);
+	System.out.println();
+	System.out.println(lab.printPasture());
     }
 
 }
