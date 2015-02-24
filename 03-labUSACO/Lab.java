@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Lab{
 
     /* CURRENT STATUS
@@ -149,6 +151,40 @@ public class Lab{
 	}
     }
 
+    public int path(String coord){
+	int r1 = Integer.parseInt( coord.substring(0, 1) );
+	int c1 = Integer.parseInt( coord.substring(2, 3) );
+	int r2 = Integer.parseInt( coord.substring(4, 5) );
+	int c2 = Integer.parseInt( coord.substring(6) );
+	int t = time;
+	int possiblepaths = cowTravel(r1, c1, r2, c2, t);
+	return possiblepaths;
+    }
+
+    public int path(){
+	int paths = path( coords );
+	return paths;
+    }
+    
+    // does not work :((
+    public int cowTravel(int r1, int c1, int r2, int c2, int t){
+	int possiblepaths = 0;
+	if ((t == 0) && (r1 == r2) && (c1 == c2))
+	    return 1;
+	else if (t == 0){
+	    return 0;
+	}
+	else if (pasture[r1][c1] == '*')
+	    return 0;
+	else {
+	    possiblepaths+= cowTravel(r1+1,c1,r2,c2,t--);
+	    possiblepaths+= cowTravel(r1,c1+1,r2,c2,t--);
+	    possiblepaths+= cowTravel(r1-1,c1,r2,c2,t--);
+	    possiblepaths+= cowTravel(r1,c1-1,r2,c2,t--);
+	}
+	return possiblepaths;
+    }
+
     public String printPasture(){
 	String output = "";
 	for (int r = 0; r < rows2; r++){
@@ -176,6 +212,8 @@ public class Lab{
 	System.out.println(vol);
 	System.out.println();
 	System.out.println(lab.printPasture());
+	int paths = lab.path();
+	System.out.println(paths);
     }
 
 }
