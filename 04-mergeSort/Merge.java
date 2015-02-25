@@ -26,6 +26,16 @@ public class Merge{
 	return data;
     }
 
+    public ArrayList<Integer> split(ArrayList<Integer stuff, int start, int stop){
+	ArrayList<Integer> A = new ArrayList<Integer>();
+	for (start; start < stop; start++){
+	    A.add
+    }
+
+    public ArrayList<Integer> mergeSort(){
+	ArrayList<Integer> A = data
+    }
+
     public static void main(String[] args){
 
     }
