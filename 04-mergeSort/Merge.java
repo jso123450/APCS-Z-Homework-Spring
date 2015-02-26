@@ -8,6 +8,7 @@ public class Merge{
 	data = input;
     }
 
+    // combines two previously sorted arraylists into one in increasing order
     public ArrayList<Integer> merge(ArrayList<Integer> stuff, ArrayList<Integer> stuff2){
 	ArrayList<Integer> newData = new ArrayList<Integer>();
 	int i = 0;
@@ -22,6 +23,7 @@ public class Merge{
 		i2++;
 	    }
 	}
+	// if anything is left over, just finish adding the rest
 	while ( i < stuff.size() ){
 	    newData.add( stuff.get(i) );
 	    i++;
@@ -33,6 +35,8 @@ public class Merge{
 	return newData;
     }
 
+    // kind of like a subArrayList function similar to a String's substring function
+    // returns an ArrayList with elements stuff.get(start) inclusive to stuff.get(stop) exclusive
     public ArrayList<Integer> split(ArrayList<Integer> stuff, int start, int stop){
 	ArrayList<Integer> A = new ArrayList<Integer>();
 	int i = start;
@@ -65,6 +69,16 @@ public class Merge{
 	return data;
     }
 
+    // returns true if s is integer-parseable
+    public static boolean isNumeric(String s){
+	try {
+	    Integer i = Integer.parseInt(s);
+	} catch (NumberFormatException nfe){
+	    return false;
+	}
+	return true;
+    }
+
     public String toString(){
 	String output = "[";
 	for (int i = 0; i < data.size(); i++){
@@ -88,12 +102,19 @@ public class Merge{
 		stuff.add(randomInt);
 	    }
 	}
+	// if only one integer-parseable argument, it functions as the # of randomInts
+	else if (args.length == 1 && isNumeric(args[0])){
+	    Random r = new Random();
+	    for (int i = 0; i < Integer.parseInt(args[0]); i++){
+		int randomInt = r.nextInt(10);
+		stuff.add(randomInt);
+	    }
+	}
 	else {
 	    for (int i = 0; i < args.length; i++){
 		// ignores any non-integer-parseable element
-		try{ 
-		    stuff.add( Integer.parseInt(args[i]) );
-		} catch (Exception e){}
+	        if (isNumeric(args[i]))
+		    stuff.add(Integer.parseInt(args[i]));
 	    }
 	}
 	Merge m = new Merge(stuff);
