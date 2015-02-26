@@ -69,6 +69,28 @@ public class Merge{
 	return data;
     }
 
+    public ArrayList<Integer> shift(ArrayList<Integer> stuff, int range, int j){
+	int i;
+	for (i = range; (i > 0) && (j > stuff.get(i-1)); i--){
+	    stuff.set( i, stuff.get(i-1) );
+	}
+	stuff.set( i, j );
+	return stuff;
+    }
+    
+    public ArrayList<Integer> isort(ArrayList<Integer> stuff){
+	for (int n = 1; n <= stuff.size(); n++){
+	    stuff = shift(stuff, n, data.get(n));
+	}
+	return stuff;
+    }
+
+    public ArrayList<Integer> isort(){
+	ArrayList<Integer> A = isort(data);
+	data = A;
+	return data;
+    }
+
     // returns true if s is integer-parseable
     public static boolean isNumeric(String s){
 	try {
@@ -131,7 +153,8 @@ public class Merge{
 	System.out.println( s4 );
 	System.out.println( s5 );
 	*/
-	m.mergeSort();
+	//m.mergeSort();
+	m.isort();
 	System.out.println( m );
     }
 
