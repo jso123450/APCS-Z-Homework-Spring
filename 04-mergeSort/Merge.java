@@ -77,12 +77,24 @@ public class Merge{
 	return output;
     }
 
+    /* ---------------------------------- MAIN ---------------------------------- */
+
     public static void main(String[] args){
 	ArrayList<Integer> stuff = new ArrayList<Integer>();
-	Random r = new Random();
-	for (int i = 0; i < 10; i++){
-	    int randomInt = r.nextInt(10);
-	    stuff.add(randomInt);
+	if (args.length == 0){
+	    Random r = new Random();
+	    for (int i = 0; i < 10; i++){
+		int randomInt = r.nextInt(10);
+		stuff.add(randomInt);
+	    }
+	}
+	else {
+	    for (int i = 0; i < args.length; i++){
+		// ignores any non-integer-parseable element
+		try{ 
+		    stuff.add( Integer.parseInt(args[i]) );
+		} catch (Exception e){}
+	    }
 	}
 	Merge m = new Merge(stuff);
 	System.out.println( m );
