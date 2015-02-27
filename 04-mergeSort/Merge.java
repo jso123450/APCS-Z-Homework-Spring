@@ -153,7 +153,6 @@ public class Merge{
 	System.out.println( s4 );
 	System.out.println( s5 );
 	*/
-
 	m.mergeSort();
 	//m.isort();
 	System.out.println( m );
