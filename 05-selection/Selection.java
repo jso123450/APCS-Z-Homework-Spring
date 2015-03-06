@@ -36,6 +36,7 @@ public class Selection {
 	for (Di = end + 1; Di < Lcopy.length; Di++)
 	    D[Di] = Lcopy[Di];
 	int pivot = Lcopy[start];
+	System.out.println("pivot: " + pivot);
 	start++;
 	while (start != end){
 	    if (Lcopy[start] < pivot){
