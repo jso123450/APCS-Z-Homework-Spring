@@ -82,7 +82,7 @@ public class SelectionReboot {
 	return Arrays.toString(data);
     }
 
-    /*----------------------------- MAIN -----------------------------*/ 
+    /*----------------------------- MAIN -----------------------------*/
 
     public static void main(String[] args){
 	int[] test = new int[]{5, 4, 1, 97, 24, 948, 14, 2, 13, 21, 69, 74};
