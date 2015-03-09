@@ -25,6 +25,7 @@ public class Selection {
     // then sorts the rest of L (from SI to EI) based on whether
     // it is smaller or greater than the pivot
     // and then returns pivot's sorted index
+    /*
     public int partition(int[] L, int SI, int EI){
 	int[] Lcopy = L;
 	int[] D = new int[Lcopy.length];
@@ -58,9 +59,42 @@ public class Selection {
 	else
 	    return start+1;
     }
+*/
+
+    public int partition(int k, int low, int high){
+	int pivot = data[low];
+	int pivotindex = low;
+	int lowi = low;
+	int highi = high;
+	data[lowi] = data[highi];
+	data[highi] = pivot;
+	highi--;
+	while (lowi < highi){
+	    if (data[lowi] < pivot)
+		lowi++;
+	    else{
+		int holder = data[lowi];
+		data[lowi] = data[highi];
+		data[highi] = holder;
+		highi--;
+	    }
+	}
+	if (data[lowi] < pivot){
+	    int holder = data[lowi++];
+	    data[lowi++] = pivot;
+	    data[high] = holder;
+	    pivotindex = lowi++;
+	}
+	if (pivotindex == k){
+	    return pivot;
+	}
+	else {
+	    if (pivotindex < k){
+		select(
+    }
 
     public int partition(){
-	int index = partition(data, 0, data.length-1);
+	int index = partition(3, 0, data.length-1);
 	return index;
     }
 
