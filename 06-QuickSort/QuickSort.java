@@ -1,4 +1,5 @@
 // edited version of classcode/1/sorts/Qselect
+// changed names to match
 
 import java.util.*;
 import java.io.*;
