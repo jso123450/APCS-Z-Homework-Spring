@@ -34,13 +34,14 @@ public class LList {
 
     public void add(int i, String s){
 	Node insertion = new Node(s);
-	Node after = get(i);
-	if (i > 0){
-	    Node previous = get(i-1);
+	int index = i+1;
+	Node after = get(index);
+	if (index > 1){
+	    Node previous = get(index-1);
 	    previous.setNext(insertion);
 	}
 	insertion.setNext(after);
-	if (i == 0)
+	if (index == 0)
 	    l = insertion;
 	len++;
     }
