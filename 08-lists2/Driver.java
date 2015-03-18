@@ -12,11 +12,7 @@ public class Driver {
 	System.out.println(ll);
 	ll.add(5,"TEST");
 	System.out.println(ll);
-	Node removedTest = ll.remove(5);
-	System.out.println(removedTest);
-	System.out.println(ll);
-	Node removedABCD = ll.remove(0);
-	System.out.println(removedABCD);
+	ll.remove(5);
 	System.out.println(ll);
     }
 
