@@ -1,2 +1,5 @@
-# APCS-Z-Homework-Spring
-APCS Homework Period 1, Spring 2015
+# Homework 08b - Linked Lists
+
+Testing LinkedList methods in Driver.java
+Timing in TimeTest.java
+
