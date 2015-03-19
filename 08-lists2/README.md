@@ -42,7 +42,7 @@ The ArrayList sum is always very fast.
 
 <br>
 
-The LList sum uses a loop within a loop (the loop used in LLsum() from TimeTest.java & the loop in get(int i) from LList.java)
+The LList sum uses a loop within a loop (the loop used in LLsum() from TimeTest.java uses get(int i) from LList.java, which also uses a loop)
 
 <br>
 
