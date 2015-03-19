@@ -36,8 +36,14 @@ Run Driver
 
 Not completely sure why the results are what they are...
 
+<br>
+
 The ArrayList sum is always very fast.
 
+<br>
+
 The LList sum uses a loop within a loop (the loop used in LLsum() from TimeTest.java & the loop in get(int i) from LList.java)
+
+<br>
 
 The LinkedList sum should also be using a similar method; perhaps there was a more efficient way to reduce runtime speed than what I have here.
