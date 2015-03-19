@@ -23,6 +23,11 @@ public class LList {
 	    throw new IndexOutOfBoundsException();
     }
 
+    public LLiterator getLLiterator(){
+	LLiterator llit = new LLiterator(l);
+	return llit;
+    }
+
     public void add(int d){
         Node tmp = new Node(d);
 	tmp.setNext(l.getNext());
@@ -71,26 +76,33 @@ public class LList {
 	return d;
     }
 
-    public boolean removeFirstOccur(int data){
+    public boolean removeFirstOccurr(int data){
 	int i = 0;
-	int index = -1;
 	Node placeholder = l.getNext();
 	for ( ; i < len; i++){
 	    if (placeholder.getData() == data){
-		index = i;
-		remove(index);
-		break;
+		remove(i);
+		return true;
 	    }
 	    else
 		placeholder = placeholder.getNext();
 	}
-	if (index != -1)
-	    return true;
-	else
-	    return false;
+	return false;
+	/*
+	  tmp t = l.getnext();
+	  tmp t2 = l;
+	  while (t != null){
+	     if (t.getData() == data){
+	        t2.setNext(t.getNext());
+		return true;
+             }
+	     t2 = t;
+	     t = t.getNext();
+         }
+	*/
     }
 
-    public int getLen(){
+    public int size(){
 	return len;
     } 
 

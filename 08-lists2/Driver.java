@@ -17,8 +17,8 @@ public class Driver {
 	ll.remove(5);
 	System.out.println(ll);
 
-	boolean removed = ll.removeFirstOccur(666);
-	System.out.println("RemovedFirstOccur of 666? " + removed);
+	boolean removed = ll.removeFirstOccurr(666);
+	System.out.println("RemovedFirstOccurr of 666? " + removed);
 
 	System.out.println();
 
@@ -28,8 +28,8 @@ public class Driver {
 	ll.add(7,667);
 	System.out.println(ll);
 	System.out.println();
-	removed = ll.removeFirstOccur(667);
-	System.out.println("RemovedFirstOccur of 667? " + removed);
+	removed = ll.removeFirstOccurr(667);
+	System.out.println("RemovedFirstOccurr of 667? " + removed);
 	System.out.println(ll);
 
 	System.out.println();

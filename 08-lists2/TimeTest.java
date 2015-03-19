@@ -28,7 +28,7 @@ public class TimeTest{
 
     public int sumLL(){
 	int sum = 0;
-	for (int i = 0; i < LL.getLen(); i++)
+	for (int i = 0; i < LL.size(); i++)
 	    sum+= LL.get(i);
 	return sum;
     }
