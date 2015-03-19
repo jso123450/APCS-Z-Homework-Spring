@@ -1,8 +1,11 @@
 # Homework 08b - Linked Lists
 
-Testing LinkedList methods in Driver.java  
+Run Driver
 
-Timing in TimeTest.java
+<ul>
+	<li>Tests LList methods to ensure functionality</li>
+	<li>Runs time tests</li>
+</ul>
 
 <table class="tg">
   <tr>
