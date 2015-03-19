@@ -34,3 +34,10 @@ Run Driver
   </tr>
 </table>
 
+Not completely sure why the results are what they are...
+
+The ArrayList sum is always very fast.
+
+The LList sum uses a loop within a loop (the loop used in LLsum() from TimeTest.java & the loop in get(int i) from LList.java)
+
+The LinkedList sum should also be using a similar method; perhaps there was a more efficient way to reduce runtime speed than what I have here.
