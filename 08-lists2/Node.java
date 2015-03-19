@@ -1,22 +1,22 @@
 public class Node {
 
-    private String data;
+    private int data;
     private Node next;
 
     public Node(){
-	this("");
+	this(-1);
     }
 
-    public Node(String s){
-	data = s;
+    public Node(int d){
+	data = d;
 	next = null;
     }
 
-    public void setData(String s){
-	data = s;
+    public void setData(int d){
+	data = d;
     }
 
-    public String getData(){
+    public int getData(){
 	return data;
     }
 
@@ -29,7 +29,7 @@ public class Node {
     }
 
     public String toString(){
-	return data;
+	return data + "";
     }
 
     public void getRest(){
