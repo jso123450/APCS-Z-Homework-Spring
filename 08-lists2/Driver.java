@@ -27,9 +27,23 @@ public class Driver {
 	System.out.println(ll);
 	ll.add(7,667);
 	System.out.println(ll);
+	System.out.println();
 	removed = ll.removeFirstOccur(667);
 	System.out.println("RemovedFirstOccur of 667? " + removed);
 	System.out.println(ll);
+
+	System.out.println();
+	System.out.println();
+	System.out.println();
+
+	System.out.println("Running Time Tests");
+	TimeTest t = new TimeTest();
+	int len = 1000;
+	for (int number = 0; number < 3; number++){
+	    t.test(len);
+	    t.clear();
+	    len = len * 10;
+	}
     }
 
 }

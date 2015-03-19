@@ -90,24 +90,4 @@ public class TimeTest{
 	System.out.println();
     }
 
-    public static void main(String[] args){
-	/*
-	long t = System.currentTimeMillis();
-	System.out.println(t);
-	long start, elapsed;
-	start = System.currentTimeMillis();
-	// do stuff here
-	elapsed = System.currentTimeMillis() - start;
-	*/
-
-        TimeTest t = new TimeTest();
-	int len = 1000;
-	for (int number = 0; number < 3; number++){
-	    t.test(len);
-	    t.clear();
-	    len = len * 10;
-	}	
-
-    }
-
 }
