@@ -50,10 +50,8 @@ public class Driver{
 	Iterator<Integer> i3remove = l3.iterator();
 	i3remove.next();
 	i3remove.remove();
-	/*
 	while (i3remove.hasNext())
 	    System.out.println(i3remove.next());
-	*/
 	System.out.println(l3);
 	
     }
