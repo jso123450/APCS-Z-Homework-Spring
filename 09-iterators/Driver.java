@@ -14,9 +14,9 @@ public class Driver{
 
 	System.out.println(l);
 
-	LList<Integer> l2 = new LList<Integer>();
+	//LList<Integer> l2 = new LList<Integer>();
 	//ArrayList<Integer> l2 = new ArrayList<Integer>();
-	//LinkedList<Integer> l2 = new LinkedList<Integer>();
+	LinkedList<Integer> l2 = new LinkedList<Integer>();
 	for (int i=0;i < 5; i++){
 	    l2.add(i);
 	}
@@ -35,7 +35,7 @@ public class Driver{
 	    System.out.println(s + ", ");
 	System.out.println();
 	for (int j : l2)
-	    System.out.println(j + ", ");
+	   System.out.println(j + ", ");
 
 	System.out.println();
 
@@ -48,11 +48,9 @@ public class Driver{
 	    System.out.println(i3.next());
 	System.out.println();
 	Iterator<Integer> i3remove = l3.iterator();
-	i3remove.next();
+        i3remove.next();
 	i3remove.remove();
 	while (i3remove.hasNext())
 	    System.out.println(i3remove.next());
-	System.out.println(l3);
-	
     }
 }

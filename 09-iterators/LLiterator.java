@@ -13,7 +13,7 @@ public class LLiterator<E> implements Iterator<E>{
     }
 
     public boolean hasNext(){
-	return l.getNext() != null;
+	return l != null;
     }
 
     /*
@@ -34,7 +34,7 @@ public class LLiterator<E> implements Iterator<E>{
 	if (!(removeisValid))
 	    throw new IllegalStateException();
 	lprev.setNext( l.getNext() );
-	l = l.getNext();
+	//l = l.getNext();
 	removeisValid = false;
     }
 

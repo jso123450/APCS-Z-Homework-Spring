@@ -14,7 +14,7 @@ public class LList<E> implements Iterable<E> {
     // removeFirstOccur(int) -> removes the first node in the list with value int
 
     // l is the Node at the start of the linked list
-    private Node l;
+    private Node<E> l;
     private int len = 0;
 
     public LList(){
