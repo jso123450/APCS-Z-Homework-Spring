@@ -19,7 +19,7 @@ public class myStack<E> {
     }
 
     public boolean empty(){
-	return top == null;
+	return top.getData() == null;
     }
 
     public E top(){
