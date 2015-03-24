@@ -8,6 +8,7 @@ public class Driver {
 	System.out.println(s.pop());
 	s.push(1323);
 	System.out.println(s.top());
+	System.out.println(s);
     }
 
 }

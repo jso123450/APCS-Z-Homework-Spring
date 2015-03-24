@@ -26,4 +26,14 @@ public class myStack<E> {
 	return top.getData();
     }
 
+    public String toString(){
+	String s = "";
+	Node<E> i = top;
+	while (i.getNext() != null){
+	    s+= i + " --> ";
+	    i = i.getNext();
+	}
+	return s;
+    }
+
 }
