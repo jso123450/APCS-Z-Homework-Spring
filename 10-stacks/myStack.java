@@ -1,6 +1,8 @@
+import java.util.*;
+
 public class myStack<E> {
 
-    private Node<E> top;
+    public Node<E> top;
     
     public myStack(){
 	top = new Node<E>();
@@ -13,6 +15,8 @@ public class myStack<E> {
     }
 
     public E pop(){
+	if (empty())
+	    throw new EmptyStackException();
 	E data = top.getData();
 	top = top.getNext();
 	return data;
@@ -22,7 +26,9 @@ public class myStack<E> {
 	return top.getData() == null;
     }
 
-    public E top(){
+    public E peek(){
+	if (empty())
+	    throw new EmptyStackException();
 	return top.getData();
     }
 
