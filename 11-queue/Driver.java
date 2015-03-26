@@ -4,7 +4,7 @@ public class Driver {
 	myQueue<Integer> q = new myQueue<Integer>();
 	System.out.println( q.empty() );
 	// throws NoSuchElementException since empty
-	// System.out.println( q.head() );
+	//System.out.println( q.head() );
 	//System.out.println( q.dequeue() );
 	q.enqueue(3);
 	System.out.println(q);
@@ -18,6 +18,7 @@ public class Driver {
 	System.out.println(q);
 	q.dequeue();
 	System.out.println(q);
+	System.out.println("Head is " + q.head());
     }
 
 }
