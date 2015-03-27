@@ -29,7 +29,12 @@ public class myQueue<E> {
 	if (empty())
 	    throw new NoSuchElementException();
 	E data = head.getData();
-	head = head.getNext();
+	if (head == tail){
+	    head.setData(null);
+	    tail.setData(null);
+	}
+	else
+	    head = head.getNext();
 	size--;
 	return data;
     }

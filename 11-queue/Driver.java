@@ -6,6 +6,7 @@ public class Driver {
 	// throws NoSuchElementException since empty
 	//System.out.println( q.head() );
 	//System.out.println( q.dequeue() );
+	System.out.println(q);
 	q.enqueue(3);
 	System.out.println(q);
 	q.enqueue(5);
@@ -18,7 +19,12 @@ public class Driver {
 	System.out.println(q);
 	q.dequeue();
 	System.out.println(q);
-	System.out.println("Head is " + q.head());
+	q.dequeue();
+	System.out.println(q);
+	q.dequeue();
+	System.out.println(q);
+	// throws error since now empty
+	//System.out.println("Head is " + q.head());
     }
 
 }
