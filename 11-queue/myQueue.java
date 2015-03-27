@@ -9,6 +9,7 @@ public class myQueue<E> {
     public myQueue(){
 	head = new Node<E>();
 	tail = head;
+	size = 0;
     }
 
     public void enqueue(E data){
