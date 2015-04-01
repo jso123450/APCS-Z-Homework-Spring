@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class myQueue<E> {
+public class myQueue {
 
     private MazeNode head;
     private MazeNode tail;
