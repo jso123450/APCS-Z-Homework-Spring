@@ -21,7 +21,7 @@ public class MazeNode{
     }
 
     public int[] getData(){
-	int[] coor = new int[x,y];
+	int[] coor = new int[]{x,y};
 	return coor;
     }
 

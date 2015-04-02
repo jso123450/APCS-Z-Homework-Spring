@@ -52,17 +52,65 @@ public class Maze {
 	return s;
     }
 
-    public void solve(int x, int y){
-	myQueue frontier = new myQueue();
-	frontier.enqueue(x,y);
-	MazeNode current = new MazeNode(x,y);
-	board[x][y] = '.';
+    public boolean checkBounds(int x, int y){
+	return (x > 0 && x < maxX && y > 0 && y < maxY);
     }
+
+    public ArrayList<int[]> adjacent(int x, int y){
+	ArrayList<int[]> adjacentSpots = new ArrayList<int[]>();
+	int xi = x-1;
+	int yi = y-1;
+	while (xi < x+1){
+	    int[] coor = new int[]{xi,y};
+	    if (checkBounds(xi, y))
+		adjacentSpots.add(coor);
+	    xi++;
+	}
+	while (yi < y+1){
+	    int[] coor = new int[]{x,yi};
+	    if (checkBounds(x,yi))
+		adjacentSpots.add(coor);
+	    yi++;
+	}
+	return adjacentSpots;
+    }
+
+    public String printAdjacent(int x, int y){
+	String adjacent = "[";
+	ArrayList<int[]> adjacentSpots = adjacent(x,y);
+	for (int i = 0; i < adjacentSpots.size(); i++){
+	    adjacent+= "(" + adjacentSpots.get(i)[0] + "," + adjacentSpots.get(i)[1];
+	    if (i != adjacentSpots.size() - 1)
+		adjacent+= ") ";
+	    else
+		adjacent+= ")";
+	}
+	adjacent+= "]";
+	return adjacent;
+    }
+
+    /*
+    public void solve(int x, int y){
+	int[] bounds = new int[]{maxX, maxY};
+	myQueue frontier = new myQueue();
+	frontier.enqueue(x,y,bounds);
+	board[x][y] = '.';
+	MazeNode current = new MazeNode(x,y);
+	while (!(frontier.empty())){
+	    int[] coor = frontier.dequeue();
+	    current = new MazeNode(coor[0],coor[1]);
+	    
+	}
+    }
+    */
 
     public static void main(String[] args){
 	Maze m = new Maze();
-	System.out.println(m);
-	m.solve(1,1);
+	//System.out.println(m);
+	//m.solve(1,1);
+	ArrayList<int[]> test = m.adjacent(1,1);
+        String t = m.printAdjacent(1,1);
+	System.out.println(t);
     }
 
 }

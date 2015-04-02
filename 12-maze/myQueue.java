@@ -12,31 +12,34 @@ public class myQueue {
 	size = 0;
     }
 
-    public void enqueue(int x, int y){
-	MazeNode tmp = new MazeNode(x,y);
-	if (size == 0){
-	    head = tmp;
-	    tail = tmp;
+    public void enqueue(int x, int y, int[] bounds){
+	if (x < bounds[0] && x > 0 && y < bounds[1] && y > 0){
+	    MazeNode tmp = new MazeNode(x,y);
+	    if (size == 0){
+		head = tmp;
+		tail = tmp;
+	    }
+	    else {
+		tail.setNext(tmp);
+		tail = tmp;
+	    }
+	    size++;
 	}
-	else {
-	    tail.setNext(tmp);
-	    tail = tmp;
-	}
-	size++;
     }
+
 
     public int[] dequeue(){
 	if (empty())
 	    throw new NoSuchElementException();
 	int[] coor = head.getData();
 	if (head == tail){
-	    head.setData(null);
-	    tail.setData(null);
+	    head.setData(null, null);
+	    tail.setData(null, null);
 	}
 	else
 	    head = head.getNext();
 	size--;
-	return data;
+	return coor;
     }
 
     public boolean empty(){
@@ -47,7 +50,7 @@ public class myQueue {
 	if (empty())
 	    throw new NoSuchElementException();
 	int[] coor = head.getData();
-	return data;
+	return coor;
     }
 
     public int size(){
