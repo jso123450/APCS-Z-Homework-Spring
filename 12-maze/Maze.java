@@ -12,7 +12,6 @@ public class Maze {
     private char me = 'z';
     private char visited = '.';
     private boolean solved = false;
-    private myQueue frontier = new myQueue();
 
     public Maze(){
 	// instantiate variables
@@ -54,9 +53,10 @@ public class Maze {
     }
 
     public void solve(int x, int y){
+	myQueue frontier = new myQueue();
 	frontier.enqueue(x,y);
 	MazeNode current = new MazeNode(x,y);
-	
+	board[x][y] = '.';
     }
 
     public static void main(String[] args){
