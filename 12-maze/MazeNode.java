@@ -1,28 +1,34 @@
-public class MazeNode{
+public class MazeNode {
  
-    private int x, y;
+    private int xcor;
+    private int ycor;
     private MazeNode next;
+    private MazeNode prev;
 
-    // no <E> in constructor
     public MazeNode(){
-        x = 0;
-	y = 0;
+	xcor = -5;
+	ycor = -5;
 	next = null;
+	prev = null;
     }
 
     public MazeNode(int x, int y){
         setData(x,y);
 	next = null;
+	prev = null;
     }
 
     public void setData(int x, int y){
-	this.x = x;
-	this.y = y;
+	this.xcor = x;
+	this.ycor = y;
     }
 
-    public int[] getData(){
-	int[] coor = new int[]{x,y};
-	return coor;
+    public int getX(){
+	return xcor;
+    }
+
+    public int getY(){
+	return ycor;
     }
 
     public void setNext(MazeNode n){
@@ -33,8 +39,16 @@ public class MazeNode{
 	return next;
     }
 
+    public void setPrev(MazeNode n){
+	prev = n;
+    }
+
+    public MazeNode getPrev(){
+	return prev;
+    }
+
     public String toString(){
-	return "(" + x + ", " + y + ")";
+	return "(" + xcor + ", " + ycor + ")";
     }
 
 }

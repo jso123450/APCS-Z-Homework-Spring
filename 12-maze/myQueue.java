@@ -4,57 +4,53 @@ public class myQueue {
 
     private MazeNode head;
     private MazeNode tail;
-    private int size;
 
     public myQueue(){
-	head = new MazeNode();
+	head = null;
 	tail = head;
-	size = 0;
     }
 
-    public void enqueue(int x, int y, int[] bounds){
-	if (x < bounds[0] && x > 0 && y < bounds[1] && y > 0){
-	    MazeNode tmp = new MazeNode(x,y);
-	    if (size == 0){
-		head = tmp;
-		tail = tmp;
-	    }
-	    else {
-		tail.setNext(tmp);
-		tail = tmp;
-	    }
-	    size++;
+    public void enqueue(int x1, int y1){
+	MazeNode newpos = new MazeNode(x1,y1);
+	if (empty()){
+	    tail = newpos;
+	    head = newpos;
+	}
+	else {
+	    tail.setNext(newpos);
+	    tail = newpos;
 	}
     }
 
+    public void enqueue(MazeNode newpos){
+	if (empty()){
+	    tail = newpos;
+	    head = newpos;
+	}
+	else {
+	    tail.setNext(newpos);
+	    tail = newpos;
+	}
+    }
 
-    public int[] dequeue(){
+    public MazeNode dequeue(){
 	if (empty())
 	    throw new NoSuchElementException();
-	int[] coor = head.getData();
-	if (head == tail){
-	    head.setData(null, null);
-	    tail.setData(null, null);
-	}
-	else
-	    head = head.getNext();
-	size--;
-	return coor;
+	MazeNode output = head;
+	head = head.getNext();
+	if (head == null)
+	    tail = null;
+	return output;
     }
 
     public boolean empty(){
-	return ((head == tail) && (head.getData() == null));
+	return ((head == tail) && (head == null));
     }
 
-    public int[] head(){
+    public MazeNode head(){
 	if (empty())
 	    throw new NoSuchElementException();
-	int[] coor = head.getData();
-	return coor;
-    }
-
-    public int size(){
-        return size;
+        return head;
     }
 
     public String toString(){

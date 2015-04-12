@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Maze {
+public class MazeUsingStack {
 
     private char[][] board;
     private int maxX;
@@ -12,10 +12,10 @@ public class Maze {
     private char me = 'z';
     private char visited = '.';
     private boolean solved = false;
-    private myQueue frontier;
+    private myStack frontier;
 
-    public Maze(){
-	frontier = new myQueue();
+    public MazeUsingStack(){
+	frontier = new myStack();
 	// instantiate variables
         maxX = 40;
         maxY = 20;
@@ -79,9 +79,9 @@ public class Maze {
     }
 
     public void solve(int x, int y){
-	frontier.enqueue(x,y);
+	frontier.push(x,y);
 	while (!(frontier.empty())){
-	    MazeNode current = frontier.dequeue();
+	    MazeNode current = frontier.pop();
 	    int xcor = current.getX();
 	    int ycor = current.getY();
 	    if (board[xcor][ycor] == exit){
@@ -96,22 +96,22 @@ public class Maze {
 	    if (check(xcor, ycor+1)){
 		MazeNode mn1 = new MazeNode(xcor,ycor+1);
 		mn1.setPrev(current);
-		frontier.enqueue(mn1);
+		frontier.push(mn1);
 	    }
 	    if (check(xcor+1,ycor)){
 		MazeNode mn2 = new MazeNode(xcor+1,ycor);
 		mn2.setPrev(current);
-		frontier.enqueue(mn2);
+		frontier.push(mn2);
 	    }
 	    if (check(xcor,ycor-1)){
 		MazeNode mn3 = new MazeNode(xcor,ycor-1);
 		mn3.setPrev(current);
-		frontier.enqueue(mn3);
+		frontier.push(mn3);
 	    }
 	    if (check(xcor-1,ycor)){
 		MazeNode mn4 = new MazeNode(xcor-1,ycor);
 		mn4.setPrev(current);
-		frontier.enqueue(mn4);
+		frontier.push(mn4);
 	    }
 	    System.out.println(this);
 	    wait(50);
@@ -119,7 +119,7 @@ public class Maze {
     }
 
     public static void main(String[] args){
-	Maze m = new Maze();
+	MazeUsingStack m = new MazeUsingStack();
 	System.out.println(m);
 	m.solve(1,1);
 	/*
