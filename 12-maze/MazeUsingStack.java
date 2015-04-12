@@ -87,6 +87,8 @@ public class MazeUsingStack {
 	    if (board[xcor][ycor] == exit){
 		solved = true;
 		System.out.println(this);
+		System.out.println( "(column,row)" );
+		System.out.println( "A correct path is : " );
 		System.out.println( correctPath(current) );
 		System.exit(0);
 	    }
