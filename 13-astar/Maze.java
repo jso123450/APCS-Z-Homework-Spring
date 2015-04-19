@@ -86,9 +86,9 @@ public class Maze {
 
 
     // Breadth First Search
-    public void addToFrontier(int x, int y, Node current){
+    public void addToFrontier(int x, int y, MazeNode current){
 	if (board[x][y] == '#' || board[x][y] == '$'){
-	    Node tmp = new Node(x,y);
+	    MazeNode tmp = new MazeNode(x,y);
 	    tmp.setPrev(current);
 	    f.add(tmp);
 	}
@@ -98,13 +98,13 @@ public class Maze {
 	f = new Frontier();
 	//f = new StackFront();
 	// add initial node to the frontier
-	f.add(new Node(x,y));
+	f.add(new MazeNode(x,y));
 	
 	board[x][y] = 'x';
-	Node current = null;
+	MazeNode current = null;
 	int tx = 0;
 	int ty = 0;
-	Node tmp = null;
+	MazeNode tmp = null;
 
 	while (!(f.isEmpty())){
 	    current = f.remove();
@@ -126,7 +126,7 @@ public class Maze {
 	}
 
 	// recover the path
-	for (Node p = current.getPrev(); p != null; p = p.getPrev()){
+	for (MazeNode p = current.getPrev(); p != null; p = p.getPrev()){
 	    board[p.getX()][p.getY()] = 'P';
 	    wait(50);
 	    System.out.println(this);
@@ -139,29 +139,37 @@ public class Maze {
     // first assign a priority and then add to the frontier
     // which is a priority queue (ordered list)
 
-    // Maze Heuristics
-    // 1. distance formula (euclidean)
-    // 2. Manhatttan (taxi cab) distance (deltax + deltay)
+    // Maze Heuristics (which)
+    // 0. distance formula (euclidean)
+    // 1. Manhatttan (taxi cab) distance (deltax + deltay)
+    // 2. astar
 
-    public void addToPriorityFrontier(int x, int y, Node current, int which){
+    // A*
+    // priority = # steps so far + estimate to exit
+    //            ^ tracked in node
+
+    public void addToPriorityFrontier(int x, int y, MazeNode current, int which){
 	if (board[x][y] == '#' || board[x][y] == '$'){
-	    Node tmp = new Node(x,y,exitx,exity);
-	    tmp.setPrev(current);
+	    MazeNode tmp = new MazeNode(x,y,exitx,exity,current);
+	    //System.out.println(tmp.getManhattanPriority());
+	    //System.out.println(tmp.getEuclidPriority());
 	    pf.add(tmp,which);
+	    //System.out.println("added? " + pf.l.size());
+	    //System.out.println(pf.toStringManhattan());
 	}
     }
 
     public void bestfs(int x, int y, int which){
 	pf = new PriorityFrontier();
-	pf.add(new Node(x,y,exitx,exity));
+        pf.add(new MazeNode(x,y,exitx,exity,0));
 	
 	board[x][y] = 'x';
-	Node current = null;
+	MazeNode current = null;
 	int tx = 0;
 	int ty = 0;
-	Node tmp = null;
+	MazeNode tmp = null;
 
-	while (!(pf.isEmpty())){
+        while (!(pf.isEmpty())){
 	    current = pf.remove();
 	    int cx = current.getX();
 	    int cy = current.getY();
@@ -171,11 +179,19 @@ public class Maze {
 	    board[cx][cy] = me;
 
 	    addToPriorityFrontier(cx+1,cy,current,which);
-	    addToPriorityFrontier(cx-1,cy,current,which);
+	    //System.out.println(1);
+	    //System.out.println(pf);
 	    addToPriorityFrontier(cx,cy+1,current,which);
+	    //System.out.println(2);
+	    //System.out.println(pf);
+	    addToPriorityFrontier(cx-1,cy,current,which);
+	    //System.out.println(3);
+	    //System.out.println(pf);
 	    addToPriorityFrontier(cx,cy-1,current,which);
+	    //System.out.println(4);
+	    //System.out.println(pf);
 
-	    System.out.println(pf);
+	    //System.out.println(pf.toStringManhattan());
 
 	    wait(50);
 	    System.out.println(this);
@@ -183,23 +199,21 @@ public class Maze {
 	}
 
 	// recover the path
-	for (Node p = current.getPrev(); p != null; p = p.getPrev()){
+	for (MazeNode p = current.getPrev(); p != null; p = p.getPrev()){
 	    board[p.getX()][p.getY()] = 'P';
 	    wait(50);
 	    System.out.println(this);
 	}
     }
 
-    // A*
-    // priority = # steps so far + estimate to exit
-    //            ^ tracked in node
-
     public static void main(String[] args){
 	Maze m = new Maze();
 	System.out.println(m);
+	//System.out.println(m.exitx);
+	//System.out.println(m.exity);
 	//m.solve(1,1);
 	//m.bfs(1,1);
-	m.bestfs(1,1,1);
+	m.bestfs(1,1,2);
     }
 
 }

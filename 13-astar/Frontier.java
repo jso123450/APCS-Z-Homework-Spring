@@ -3,13 +3,13 @@ import java.util.*;
 public class Frontier {
 
     // just because we're going to extend frontier
-    public LinkedList<Node> l = new LinkedList<Node>();
+    public LinkedList<MazeNode> l = new LinkedList<MazeNode>();
 
-    public void add(Node n){
+    public void add(MazeNode n){
 	l.add(n);
     }
     
-    public Node remove(){
+    public MazeNode remove(){
         return l.remove();
     }
 
