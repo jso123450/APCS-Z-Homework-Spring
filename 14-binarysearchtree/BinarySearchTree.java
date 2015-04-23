@@ -21,7 +21,19 @@ public class BinarySearchTree {
     }
 
     public void insert(Node n){
-	if (root 
+	if (root == null)
+	    root = n;
+	// insert as new leaf
+	Node iter = root;
+	Node piggybacker = iter;
+	while (iter != null){
+	    piggybacker = iter;
+	    if (iter.getData() < n.getData())
+		iter = iter.getLeft();
+	    else if (iter.getData() > n.getData())
+		iter = iter.getRight();
+	}
+	    
     }
 
 }
