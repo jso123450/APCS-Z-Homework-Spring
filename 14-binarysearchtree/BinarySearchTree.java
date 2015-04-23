@@ -25,7 +25,7 @@ public class BinarySearchTree {
 	    root = n;
 	// insert as new leaf
 	Node iter = root;
-	Node piggybacker = iter;
+	Node piggybacker = null;
 	while (iter != null){
 	    piggybacker = iter;
 	    if (iter.getData() < n.getData())
