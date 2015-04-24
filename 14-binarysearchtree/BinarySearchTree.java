@@ -3,6 +3,14 @@ public class BinarySearchTree {
     private Node root;
 
     public BinarySearchTree(Node root){
+	setRoot(root);
+    }
+
+    public Node getRoot(){
+	return root;
+    }
+
+    public void setRoot(Node root){
 	this.root = root;
     }
 
@@ -81,6 +89,11 @@ public class BinarySearchTree {
 	return null;
     }
 
+    public void recInsert(int i){
+	Node r = root;
+	recInsert(r,i);
+    }
+
     public void recInsert(Node t, int i){
 	Node insertion = new Node(i);
 	if (t == null){
@@ -108,5 +121,12 @@ public class BinarySearchTree {
 	}
     }
 
+    /* -------------------------- MAIN -------------------------- */
+
+    public static void main(String[] args){
+	BinarySearchTree bst = new BinarySearchTree(new Node(5));
+	bst.insert(7);
+	System.out.println(bst.getRoot().getRight().getData());
+    }
 
 }
