@@ -6,8 +6,15 @@ public class BinarySearchTree {
 	this.root = root;
     }
 
-    public Node search(Integer i){
-	Node n = root;
+    // within itself
+    public Node search(int i){
+        Node output = search(root,i);
+	return output;
+    }
+
+    //for others...?
+    public Node search(Node t, int i){
+	Node n = t;
 	while (n != null){
 	    int c = n.getData().compareTo(i);
 	    if (c > 0)
@@ -19,21 +26,32 @@ public class BinarySearchTree {
 	}
 	return null;
     }
-
-    public void insert(Node n){
-	if (root == null)
-	    root = n;
+    
+    // within itself
+    public void insert(int i){
+	insert(root,i);
+    }
+    
+    // assuming no other nodes with int i already in tree
+    public void insert(Node t, int i){
+	Node insertion = new Node(i);
+	if (t == null)
+	    t = insertion;
 	// insert as new leaf
-	Node iter = root;
+	Node iter = t;
 	Node piggybacker = null;
 	while (iter != null){
 	    piggybacker = iter;
-	    if (iter.getData() < n.getData())
+	    int c = n.getData().compareTo(i);
+	    if (c < 0)
 		iter = iter.getLeft();
-	    else if (iter.getData() > n.getData())
+	    else if (c > 0)
 		iter = iter.getRight();
 	}
-	    
+	if (i > piggybacker.getData())
+	    piggybacker.setRight(insertion);
+	else if (i < piggybacker.getData())
+	    piggybacker.setLeft(insertion);
     }
 
 }
