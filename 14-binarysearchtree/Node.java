@@ -7,6 +7,12 @@ public class Node {
         setData(data);
     }
 
+    public Node(Integer data, Node left, Node right){
+	setData(data);
+	setLeft(left);
+	setRight(right);
+    }
+
     public void setData(Integer data){
 	this.data = data;
     }
@@ -29,6 +35,10 @@ public class Node {
 
     public Node getRight(){
 	return right;
+    }
+
+    public String toString(){
+	return ""+data;
     }
 
 }

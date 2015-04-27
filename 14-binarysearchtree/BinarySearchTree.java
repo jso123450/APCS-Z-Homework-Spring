@@ -42,7 +42,6 @@ public class BinarySearchTree {
 	insert(root,i);
     }
     
-    // assuming no other nodes with int i already in tree
     public void insert(Node t, int i){
 	Node insertion = new Node(i);
 	if (t == null)
@@ -53,7 +52,9 @@ public class BinarySearchTree {
 	while (iter != null){
 	    piggybacker = iter;
 	    int c = t.getData().compareTo(i);
-	    if (c < 0)
+	    if (c == 0)
+		return; // assume unique values in tree
+	    else if (c < 0)
 		iter = iter.getRight();
 	    else if (c > 0)
 		iter = iter.getLeft();
@@ -74,18 +75,12 @@ public class BinarySearchTree {
     }
 
     public Node recSearch(Node t, int i){
-	if (t == null)
-	    return null;
-	else {
-	    int c = t.getData().compareTo(i);
-	    if (c == 0)
-		return t;
-	    else if (c < 0)
-		t = t.getRight();
-	    else if (c > 0)
-		t = t.getLeft();
-	    this.recSearch(t,i);
-	}
+	if (t == null || t.getData() == i)
+	    return t;
+	else if (i < t.getData())
+	    return recSearch(t.getLeft(),i);
+	else if (i > t.getData())
+	    return recSearch(t.getRight(),i);
 	return null;
     }
 
@@ -121,12 +116,44 @@ public class BinarySearchTree {
 	}
     }
 
+    public String toString(){
+	Node r = root;
+	if (r == null)
+	    return "r" + r;
+	String s = "R"+r;
+	if (r.getLeft() != null)
+	    s+= " l" + traverse(r.getLeft());
+	if (r.getRight() != null)
+	    s+= " r" + traverse(r.getRight());
+	return s;
+    }
+
+    public String traverse(Node n){
+	if (n == null)
+	    return n.toString();
+	String s = ""+n;
+	if (n.getLeft() != null)
+	    s+= " l" + traverse(n.getLeft());
+	if (n.getRight() != null)
+	    s+= " r" + traverse(n.getRight());
+	return s;
+    }
+
     /* -------------------------- MAIN -------------------------- */
 
     public static void main(String[] args){
 	BinarySearchTree bst = new BinarySearchTree(new Node(5));
 	bst.insert(7);
 	System.out.println(bst.getRoot().getRight().getData());
+	bst.insert(3);
+	System.out.println(bst.getRoot().getLeft().getData());
+	System.out.println(bst.search(3) + " should equal " + bst.getRoot().getLeft());
+	System.out.println(bst.recSearch(3) + " should equal " + bst.getRoot().getLeft());
+	bst.insert(4);
+	bst.insert(6);
+	System.out.println(bst.getRoot().getLeft().getRight().getData());
+	System.out.println(bst.getRoot().getRight().getLeft().getData());
+	System.out.println(bst);
     }
 
 }
