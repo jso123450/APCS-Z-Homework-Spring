@@ -168,7 +168,7 @@ public class BinarySearchTree {
 	    leftBiggest.setData(null);
 	}
     }
-
+ 
     /*
     public String toString(){
 	Node r = root;
