@@ -167,7 +167,6 @@ public class BinarySearchTree {
 	    T.setData( leftBiggest.getData() );
 	    leftBiggest.setData(null);
 	}
-	
     }
 
     /*
