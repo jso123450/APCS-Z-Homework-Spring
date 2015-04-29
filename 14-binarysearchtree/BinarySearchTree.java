@@ -116,27 +116,46 @@ public class BinarySearchTree {
 	}
     }
 
+    /*
     public String toString(){
 	Node r = root;
 	if (r == null)
 	    return "r" + r;
 	String s = "R"+r;
+	int spacing = 0;
+	s+= "\n";
 	if (r.getLeft() != null)
-	    s+= " l" + traverse(r.getLeft());
+	    s+= traverse(r.getLeft());
 	if (r.getRight() != null)
-	    s+= " r" + traverse(r.getRight());
+	    s+= traverse(r.getRight());
 	return s;
+    }
+
+    public String traverse(Node n, int spacing){
+	if (n == null)
+	    return n.toString();
+	String s = "";
+	for (int i = 0; i < spacing; i++)
+	    s+= " ";
+	s+= n + "\n";
+	if (n.getLeft() != null)
+	    s+= "l" + traverse(n.getLeft(),spacing+1);
+	if (n.getRight() != null)
+	    s+= "r" + traverse(n.getRight(),spacing+1);
+	return s;
+    }
+    */
+    
+    public String toString(){
+	Node r = root;
+	return traverse(r);
     }
 
     public String traverse(Node n){
 	if (n == null)
-	    return n.toString();
-	String s = ""+n;
-	if (n.getLeft() != null)
-	    s+= " l" + traverse(n.getLeft());
-	if (n.getRight() != null)
-	    s+= " r" + traverse(n.getRight());
-	return s;
+	    return "";
+	else // puts it in ascending order bcuz left -> n -> right
+	    return traverse(n.getLeft()) + n.getData() + ", " + traverse(n.getRight());
     }
 
     /* -------------------------- MAIN -------------------------- */
@@ -153,6 +172,11 @@ public class BinarySearchTree {
 	bst.insert(6);
 	System.out.println(bst.getRoot().getLeft().getRight().getData());
 	System.out.println(bst.getRoot().getRight().getLeft().getData());
+	System.out.println(bst);
+	bst.insert(9);
+	bst.insert(1);
+	bst.insert(2);
+	bst.insert(8);
 	System.out.println(bst);
     }
 
