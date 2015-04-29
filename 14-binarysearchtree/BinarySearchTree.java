@@ -1,9 +1,14 @@
+import java.util.*;
+import java.lang.Integer;
+
 public class BinarySearchTree {
 
+    private Node dummy = new Node(Integer.MIN_VALUE);
     private Node root;
 
     public BinarySearchTree(Node root){
 	setRoot(root);
+	dummy.setNext(root);
     }
 
     public Node getRoot(){
@@ -116,6 +121,55 @@ public class BinarySearchTree {
 	}
     }
 
+    /* removing
+       1. get a pointer to the node (T) to delete and its parent (TL)
+       ( same thing as the second part of insert but you stop @ the node to delete )
+          a) T is a leaf
+	       point TL's left/right to null
+          b) T has one child
+	       point TL's left or right to T's only child
+	  c) T has two children
+	       1) find the largest in the left subtree (or smallest in the right)
+	          L = T.getLeft();
+		  while (L.getRight() != null)
+		     L = L.getRight();
+		  (& vice versa for smallest on right)
+		  copy the data from L into T
+		  remove L.getData() from T.getLeft()
+     */
+
+    public void remove(Node T){
+	Node TL = T.getParent();
+	if (T.getChildren() == 0){
+	    if (TL.getRight() == T)
+		TL.setRight(null);
+	    else if (TL.getLeft() == T)
+		TL.setLeft(null);
+	}
+	else if (T.getChildren() == 1){
+	    if (TL.getRight() == T){
+		if (T.getRight() != null)
+		    TL.setRight(T.getRight());
+		else if (T.getLeft() != null)
+		    TL.setLeft(T.getLeft());
+	    }
+	    else if (TL.getLeft() == T){
+		if (T.getRight() != null)
+		    TL.setLeft(T.getRight());
+		if (T.getLeft() != null)
+		    TL.setLeft(T.getLeft());
+	    }
+	}
+	else if (T.getChildren() == 2){
+	    Node leftBiggest = T.getLeft();
+	    while (leftBiggest.getRight() != null)
+		leftBiggest = leftBiggest.getRight();
+	    T.setData( leftBiggest.getData() );
+	    leftBiggest.setData(null);
+	}
+	
+    }
+
     /*
     public String toString(){
 	Node r = root;
@@ -162,6 +216,7 @@ public class BinarySearchTree {
 
     public static void main(String[] args){
 	BinarySearchTree bst = new BinarySearchTree(new Node(5));
+	/*
 	bst.insert(7);
 	System.out.println(bst.getRoot().getRight().getData());
 	bst.insert(3);
@@ -177,6 +232,33 @@ public class BinarySearchTree {
 	bst.insert(1);
 	bst.insert(2);
 	bst.insert(8);
+	*/
+	/*
+	ArrayList<Integer> ints = new ArrayList<Integer>();
+	for (int i = 0; i < 10; i++){
+	    ints.add(i);
+	    System.out.println(ints);
+	}
+	Random r = new Random();
+	while (ints.size() > 0){
+	    bst.insert( ints.remove(r.nextInt(ints.size())) );
+	    System.out.println(bst);
+	}
+	System.out.println(bst.getRoot().getData());
+	*/
+	bst.insert(20);
+	bst.insert(10);
+	bst.insert(50);
+	bst.insert(5);
+	bst.insert(7);
+	bst.insert(40);
+	bst.insert(61);
+	bst.insert(30);
+	bst.insert(41);
+	bst.insert(60);
+	bst.insert(63);
+	bst.insert(45);
+	bst.insert(67);
 	System.out.println(bst);
     }
 
