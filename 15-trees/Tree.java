@@ -1,4 +1,5 @@
 import java.lang.Integer;
+// tree is not sorted
 
 public class Tree {
 
@@ -121,6 +122,12 @@ public class Tree {
 	    return traverse(n.getLeft()) + n.getData() + ", " + traverse(n.getRight());
     }
 
+    /* -------------------------- MAIN  -------------------------- */
+
+    public static void main(String[] args){
+	Tree T = new Tree();
+	T.insert(
+    }
 
 
 }
