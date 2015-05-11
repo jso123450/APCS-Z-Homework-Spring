@@ -3,6 +3,8 @@ import java.lang.Integer;
 
 public class BinarySearchTree {
 
+    /* -------------------------- SETUP -------------------------- */
+
     private Node dummy = new Node(Integer.MIN_VALUE);
     private Node root;
 
@@ -71,6 +73,17 @@ public class BinarySearchTree {
     }
 
     /* -------------------------- RECURSIVE -------------------------- */
+
+    public int nodecount(){
+	return nodecount(root);
+    }
+
+    public int nodecount(Node T){
+	if (T == null)                   // if null return 0
+	    return 0;
+	else                                // 1 + branch going left + branch going right
+	    return 1 + nodecount(T.getLeft()) + nodecount(T.getRight());
+    }
 
     // within its own tree
     public Node recSearch(int i){
@@ -169,36 +182,6 @@ public class BinarySearchTree {
 	}
     }
  
-    /*
-    public String toString(){
-	Node r = root;
-	if (r == null)
-	    return "r" + r;
-	String s = "R"+r;
-	int spacing = 0;
-	s+= "\n";
-	if (r.getLeft() != null)
-	    s+= traverse(r.getLeft());
-	if (r.getRight() != null)
-	    s+= traverse(r.getRight());
-	return s;
-    }
-
-    public String traverse(Node n, int spacing){
-	if (n == null)
-	    return n.toString();
-	String s = "";
-	for (int i = 0; i < spacing; i++)
-	    s+= " ";
-	s+= n + "\n";
-	if (n.getLeft() != null)
-	    s+= "l" + traverse(n.getLeft(),spacing+1);
-	if (n.getRight() != null)
-	    s+= "r" + traverse(n.getRight(),spacing+1);
-	return s;
-    }
-    */
-    
     public String toString(){
 	Node r = root;
 	return traverse(r);
@@ -215,50 +198,19 @@ public class BinarySearchTree {
 
     public static void main(String[] args){
 	BinarySearchTree bst = new BinarySearchTree(new Node(5));
-	/*
 	bst.insert(7);
-	System.out.println(bst.getRoot().getRight().getData());
-	bst.insert(3);
-	System.out.println(bst.getRoot().getLeft().getData());
-	System.out.println(bst.search(3) + " should equal " + bst.getRoot().getLeft());
-	System.out.println(bst.recSearch(3) + " should equal " + bst.getRoot().getLeft());
-	bst.insert(4);
-	bst.insert(6);
-	System.out.println(bst.getRoot().getLeft().getRight().getData());
-	System.out.println(bst.getRoot().getRight().getLeft().getData());
-	System.out.println(bst);
-	bst.insert(9);
-	bst.insert(1);
-	bst.insert(2);
-	bst.insert(8);
-	*/
-	/*
-	ArrayList<Integer> ints = new ArrayList<Integer>();
-	for (int i = 0; i < 10; i++){
-	    ints.add(i);
-	    System.out.println(ints);
-	}
-	Random r = new Random();
-	while (ints.size() > 0){
-	    bst.insert( ints.remove(r.nextInt(ints.size())) );
-	    System.out.println(bst);
-	}
-	System.out.println(bst.getRoot().getData());
-	*/
 	bst.insert(20);
 	bst.insert(10);
-	bst.insert(50);
-	bst.insert(5);
-	bst.insert(7);
-	bst.insert(40);
-	bst.insert(61);
 	bst.insert(30);
+	bst.insert(50);
 	bst.insert(41);
+	bst.insert(61);
 	bst.insert(60);
 	bst.insert(63);
 	bst.insert(45);
 	bst.insert(67);
 	System.out.println(bst);
+	System.out.println(bst.nodecount());
     }
 
 }
