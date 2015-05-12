@@ -36,6 +36,10 @@ public class Tree {
 	    return 1 + nodecount(T.getLeft()) + nodecount(T.getRight());
     }
 
+    public int max3(int a, int b, int c){
+	return Math.max(Math.max(a,b), c);
+    }
+
     public int maxValue(){
 	return maxValue(root);
     }
@@ -96,20 +100,20 @@ public class Tree {
 	}
     }
 
-    public int longest(){
-	return longest(root);
+    public int diameter(){
+	return diameter(root);
     }
 
-    public int longest(Node T){
-	int h1 = height(T.getLeft());
-	int h2 = height(T.getRight());
-	return h1+h2-1;
+    public int diameter(Node T){
+	if (T == null)
+	    return 0;
+	else {
+	    int path1 = height(T.getLeft()) + height(T.getRight()) + 2;
+	    int path2 = diameter(T.getLeft());
+	    int path3 = diameter(T.getRight());
+	    return max3(path1,path2,path3);
+        }
     }
-       
-    /*
-    public int longest(){}
-    public int longest(Node T){}
-    */
 
     public Node search(int i){
 	Node output = search(root,i);
@@ -224,7 +228,7 @@ public class Tree {
 	System.out.println(T.height());
 	T.splitDupes();
 	System.out.println(T);
-	System.out.println(T.longest());
+	System.out.println(T.diameter());
     }
 
 
